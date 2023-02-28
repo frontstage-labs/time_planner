@@ -328,13 +328,17 @@ class _TimePlannerState extends State<TimePlanner> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: (config.totalHours * config.cellHeight!) + config.cellHeight!,
+                  height: (config.totalHours * config.cellHeight!) + config.cellHeight! + 10,
                   width: (config.totalDays * config.cellWidth!).toDouble(),
                   child: Stack(
                     children: <Widget>[
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
+                          const SizedBox(height: 10,),
+                          const Divider(
+                            height: 1,
+                          ),
                           for (var i = 0; i < config.totalHours; i++)
                             Column(
                               mainAxisSize: MainAxisSize.min,

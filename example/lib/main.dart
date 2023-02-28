@@ -57,10 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       int day = Random().nextInt(14);
-      int hour = Random().nextInt(18) + 6;
-      int minutes = Random().nextInt(60);
+      int hour = 23;//Random().nextInt(18) + 6;
+      int minutes = 0;//Random().nextInt(60);
       int daysDuration = Random().nextInt(4) + 1;
-      int minutesDuration = Random().nextInt(90) + 30;
+      int minutesDuration = 60;//Random().nextInt(90) + 30;
       tasks.add(
         TimePlannerTask(
           cardElevation: 0,
@@ -102,7 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TimePlannerStyle(
             cellHeight: 120,
             cellWidth: 282,
-            showScrollBar: true,
+              showScrollBar: false,
+
             dividerColor: Colors.transparent,
             headerContainerDecoration: BoxDecoration(
               color: Colors.white,
