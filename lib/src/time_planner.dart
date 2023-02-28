@@ -232,11 +232,13 @@ class _TimePlannerState extends State<TimePlanner> {
         controller: mainVerticalController,
         isAlwaysShown: true,
         child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           controller: mainVerticalController,
           child: Scrollbar(
             controller: mainHorizontalController,
             isAlwaysShown: true,
             child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               controller: mainHorizontalController,
               scrollDirection: Axis.horizontal,
               child: Column(
@@ -314,7 +316,9 @@ class _TimePlannerState extends State<TimePlanner> {
     }
     return SingleChildScrollView(
       controller: mainVerticalController,
+      physics: const ClampingScrollPhysics(),
       child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         controller: mainHorizontalController,
         scrollDirection: Axis.horizontal,
         child: Column(
