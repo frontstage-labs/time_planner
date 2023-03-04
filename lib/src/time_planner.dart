@@ -148,16 +148,20 @@ class _TimePlannerState extends State<TimePlanner> {
               controller: dayHorizontalController,
               scrollDirection: Axis.horizontal,
               physics: const NeverScrollableScrollPhysics(),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const SizedBox(
-                    width: 60,
-                  ),
-                  for (int i = 0; i < config.totalDays; i++) widget.headers[i],
-                ],
+              clipBehavior: Clip.none,
+              child: Container(
+                decoration: widget.style?.headerContainerDecoration,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(
+                        width: 60,
+                      ),
+                      for (int i = 0; i < config.totalDays; i++) widget.headers[i],
+                    ],
+                )
               ),
             ),
             Container(
@@ -195,12 +199,13 @@ class _TimePlannerState extends State<TimePlanner> {
                                     // this returns the formatted time string based on the use24HourFormat argument.
                                     time: formattedTime(i),
                                   ),
-                                )
+                                ),
+                              const SizedBox(height: 10,),
                             ],
                           ),
                           Container(
                             height:
-                                (config.totalHours * config.cellHeight!) + 80,
+                                (config.totalHours * config.cellHeight!) + config.cellHeight!,
                             width: 1,
                             color: style.dividerColor ??
                                 Theme.of(context).primaryColor,
@@ -227,11 +232,13 @@ class _TimePlannerState extends State<TimePlanner> {
         controller: mainVerticalController,
         isAlwaysShown: true,
         child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           controller: mainVerticalController,
           child: Scrollbar(
             controller: mainHorizontalController,
             isAlwaysShown: true,
             child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               controller: mainHorizontalController,
               scrollDirection: Axis.horizontal,
               child: Column(
@@ -245,7 +252,7 @@ class _TimePlannerState extends State<TimePlanner> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(
-                        height: (config.totalHours * config.cellHeight!) + 80,
+                        height: (config.totalHours * config.cellHeight!) + config.cellHeight! + 10,
                         width:
                             (config.totalDays * config.cellWidth!).toDouble(),
                         child: Stack(
@@ -253,6 +260,10 @@ class _TimePlannerState extends State<TimePlanner> {
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
+                                const SizedBox(height: 10,),
+                                const Divider(
+                                  height: 1,
+                                ),
                                 for (var i = 0; i < config.totalHours; i++)
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -305,7 +316,9 @@ class _TimePlannerState extends State<TimePlanner> {
     }
     return SingleChildScrollView(
       controller: mainVerticalController,
+      physics: const ClampingScrollPhysics(),
       child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         controller: mainHorizontalController,
         scrollDirection: Axis.horizontal,
         child: Column(
@@ -319,13 +332,17 @@ class _TimePlannerState extends State<TimePlanner> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: (config.totalHours * config.cellHeight!) + 80,
+                  height: (config.totalHours * config.cellHeight!) + config.cellHeight! + 10,
                   width: (config.totalDays * config.cellWidth!).toDouble(),
                   child: Stack(
                     children: <Widget>[
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
+                          const SizedBox(height: 10,),
+                          const Divider(
+                            height: 1,
+                          ),
                           for (var i = 0; i < config.totalHours; i++)
                             Column(
                               mainAxisSize: MainAxisSize.min,
